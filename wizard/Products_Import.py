@@ -33,7 +33,7 @@ class ProductWizard(models.TransientModel):
                 header_list.append(value)
             else:
                 print(value)
-                internal_reference = [0]
+                internal_reference = value[0]
                 name = value[1]
                 can_be_sold = value[2]
                 can_be_purchased = value[3]
@@ -64,7 +64,7 @@ class ProductWizard(models.TransientModel):
                 inventory_location = value[28]
                 income_account = value[29]
 
-                categ_id = self.env['product.category'].search([('display_name', '=', product_category)])
+                categ_id = self.env['product.category'].search([('name', '=', product_category)]) #change this before commiting replace display_name to name
                 # order_planner_policy = self.env['sale.order.planning.policy'].search([('name', '=', order_planner_policy)])
                 create_uid = self.env['res.users'].search([('name', '=', created_by)])
                 # location_id = self.env['stock.location'].search([('name', '=', location)], limit=1)
