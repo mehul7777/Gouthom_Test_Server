@@ -33,37 +33,38 @@ class ProductWizard(models.TransientModel):
                 header_list.append(value)
             else:
                 print(value)
-                name = value[0]
-                can_be_sold = value[1]
-                can_be_purchased = value[2]
-                can_be_expensed = value[3]
-                product_type = value[4]
-                product_category = value[5]
-                oem = value[6]
-                barcode = value[7]
-                order_planner_policy = value[8]
-                version = value[9]
-                created_by = value[10]
-                created_on = value[11]
-                location = value[12]
-                warehouse = value[13]
-                sales_price = value[14]
-                loaded_cost = value[15]
-                sales_person_minimum_cost = value[16]
-                tax_cloud_cost = value[17]
-                cost = value[18]
-                company = value[19]
-                unit_of_measure = value[20]
-                purchase_unit_of_measure = value[21]
-                invoice_policy = value[22]
-                re_invoice_policy = value[23]
-                routes = value[24]
-                responsible = value[25]
-                production_location = value[26]
-                inventory_location = value[27]
-                income_account = value[28]
+                internal_reference = [0]
+                name = value[1]
+                can_be_sold = value[2]
+                can_be_purchased = value[3]
+                can_be_expensed = value[4]
+                product_type = value[5]
+                product_category = value[6]
+                oem = value[7]
+                barcode = value[8]
+                order_planner_policy = value[9]
+                version = value[10]
+                created_by = value[11]
+                created_on = value[12]
+                location = value[13]
+                warehouse = value[14]
+                sales_price = value[15]
+                loaded_cost = value[16]
+                sales_person_minimum_cost = value[17]
+                tax_cloud_cost = value[18]
+                cost = value[19]
+                company = value[20]
+                unit_of_measure = value[21]
+                purchase_unit_of_measure = value[22]
+                invoice_policy = value[23]
+                re_invoice_policy = value[24]
+                routes = value[25]
+                responsible = value[26]
+                production_location = value[27]
+                inventory_location = value[28]
+                income_account = value[29]
 
-                categ_id = self.env['product.category'].search([('name', '=', product_category)])
+                categ_id = self.env['product.category'].search([('display_name', '=', product_category)])
                 # order_planner_policy = self.env['sale.order.planning.policy'].search([('name', '=', order_planner_policy)])
                 create_uid = self.env['res.users'].search([('name', '=', created_by)])
                 # location_id = self.env['stock.location'].search([('name', '=', location)], limit=1)
@@ -79,6 +80,7 @@ class ProductWizard(models.TransientModel):
 
                 if name:
                     product_val = {
+                        'default_code': internal_reference,
                         'name': name,
                         'sale_ok': can_be_sold,
                         'purchase_ok': can_be_purchased,
