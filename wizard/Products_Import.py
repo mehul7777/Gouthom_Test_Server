@@ -25,6 +25,7 @@ class ProductWizard(models.TransientModel):
         row_num = 0
         header_list = []
         data_dict = {}
+
         for row in lis:
             data_dict.update({row_num: row})
             row_num += 1
